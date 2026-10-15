@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GTA: SHADOW LIFE</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="backdrop"></div>
+<header class="topbar">
+  <div class="brand"><div class="logo">SL</div><div><strong>SHADOW LIFE</strong><small>OPEN CITY · SAN SHADOW</small></div></div>
+  <div class="top-status"><span class="live-dot"></span> حالت آزاد <b>آفلاین</b></div>
+  <button id="pauseBtn" class="icon-btn" title="توقف">Ⅱ</button>
+</header>
+<main class="game-shell">
+  <section class="viewport">
+    <canvas id="world" width="1200" height="760" aria-label="دنیای بازی GTA Shadow Life"></canvas>
+    <div class="hud">
+      <div class="hud-left">
+        <div class="hud-card money"><span class="hud-icon">$</span><div><small>موجودی حساب</small><strong>∞ <em>پول بی‌نهایت</em></strong></div></div>
+        <div class="hud-card"><span class="hud-icon">◆</span><div><small>وضعیت مأموریت</small><strong id="missionHud">گشت آزاد</strong></div></div>
+      </div>
+      <div class="hud-right">
+        <div class="wanted" id="wanted"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="minimap-wrap"><canvas id="minimap" width="180" height="180"></canvas><span class="map-label">SAN SHADOW</span></div>
+      </div>
+      <div class="speedometer"><div class="speed-ring"><strong id="speed">000</strong><small>KM/H</small></div><div class="vehicle-name" id="vehicleName">NOVA GT</div></div>
+      <div class="toast" id="toast"></div>
+      <div class="help" id="help">WASD / جهت‌ها برای رانندگی · Space ترمز دستی · E تعویض خودرو · M نقشه</div>
+    </div>
+    <div id="startScreen" class="start-screen">
+      <div class="start-content">
+        <div class="overline">WELCOME TO SAN SHADOW</div>
+        <h1>GTA <span>SHADOW</span><br>LIFE</h1>
+        <p>شهر مال توئه. ماشینت رو انتخاب کن، توی خیابون‌ها بچرخ و هر جا خواستی رانندگی کن.</p>
+        <div class="start-stats"><div><strong>∞</strong><small>پول نامحدود</small></div><div><strong>05</strong><small>خودروی لوکس</small></div><div><strong>01</strong><small>شهر آزاد</small></div></div>
+        <button id="playBtn" class="primary">ورود به شهر <span>↗</span></button>
+        <small class="controls-note">WASD یا کلیدهای جهت‌نما · موبایل با دکمه‌های لمسی</small>
+      </div>
+    </div>
+    <div class="touch-controls" id="touchControls">
+      <div class="dpad"><button data-key="ArrowUp">▲</button><div><button data-key="ArrowLeft">◀</button><button data-key="ArrowDown">▼</button><button data-key="ArrowRight">▶</button></div></div>
+      <div class="touch-actions"><button data-key="Space">HANDBRAKE</button><button id="touchCar">NEXT CAR ↻</button></div>
+    </div>
+    <div id="pauseScreen" class="pause-screen hidden"><div class="pause-card"><div class="overline">PAUSED</div><h2>بازی متوقف شد</h2><button id="resumeBtn" class="primary">ادامه بازی</button></div></div>
+  </section>
+
+  <aside class="garage">
+    <div class="garage-header"><div><span class="overline">YOUR COLLECTION</span><h2>گاراژ لوکس</h2></div><span class="count">05 CARS</span></div>
+    <p class="garage-desc">همه‌ی خودروها رایگان‌اند؛ یکی را انتخاب کن و وارد شهر شو.</p>
+    <div class="car-list" id="carList">
+      <button class="car-option active" data-car="0"><span class="car-swatch blue"></span><span class="car-info"><strong>NOVA GT</strong><small>اسپرت · متعادل</small></span><span class="car-speed">220</span></button>
+      <button class="car-option" data-car="1"><span class="car-swatch red"></span><span class="car-info"><strong>VORTEX R</strong><small>سوپراسپرت · سریع</small></span><span class="car-speed">290</span></button>
+      <button class="car-option" data-car="2"><span class="car-swatch gold"></span><span class="car-info"><strong>ROYAL S</strong><small>لوکس · سنگین</small></span><span class="car-speed">210</span></button>
+      <button class="car-option" data-car="3"><span class="car-swatch green"></span><span class="car-info"><strong>VIPER X</strong><small>هایپرکار · چابک</small></span><span class="car-speed">320</span></button>
+      <button class="car-option" data-car="4"><span class="car-swatch white"></span><span class="car-info"><strong>GHOST LIMO</strong><small>لیموزین · راحت</small></span><span class="car-speed">180</span></button>
+    </div>
+    <div class="garage-actions"><button id="nextCar" class="secondary">خودروی بعدی ↻</button><button id="repairBtn" class="secondary">تعمیر خودرو ✦</button></div>
+    <div class="mission-card"><span class="mission-mark">✦</span><div><small>فعالیت اختیاری</small><strong>گشت شهری</strong><p>۵۰۰ متر رانندگی کن تا رکورد مسیرت ثبت شود.</p><div class="progress"><span id="distanceBar"></span></div><div class="progress-label"><span>پیشرفت مسیر</span><b id="distanceText">0 / 500 m</b></div></div></div>
+    <div class="garage-footer"><span class="online-mark"></span> دنیای آفلاین آماده است <span class="version">v1.0</span></div>
+  </aside>
+</main>
+<footer>GTA: SHADOW LIFE · نسخه‌ی مرورگری مستقل · بدون نیاز به کتابخانه خارجی</footer>
+<script src="app.js"></script>
+</body>
+</html>
